@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ListAll = (List<Model.EF.Touri>)ViewBag.ListAll;
+    
+}
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>We sale fresh fruits</p>
+                    <h1>Select Tour You Want</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+
+        @*<div class="row">
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul>
+                        <li class="active" data-filter="*">All</li>
+                        <li data-filter=".strawberry">Strawberry</li>
+                        <li data-filter=".berry">Berry</li>
+                        <li data-filter=".lemon">Lemon</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+        <div class="row product-lists">
+            @foreach (var item in ListAll)
+            {
+                var url = "/detail/" + item.MetaTitle + "-" + item.ID;
+                <div class="col-lg-4 col-md-6 text-center strawberry">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="@url"><img src="@(item.Image??"/Data/null/null.png")" alt="@item.Name"></a>
+                        </div>
+                        <h3>@item.Name</h3>
+                        <p class="product-price"><span>Per Tick</span> @(item.Price.HasValue?item.Price.Value.ToString("N0"): "Call") VND </p>
+                        <a href="/add-to-cart?tourisId=@item.ID&quanlity=1" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="pagination-wrap">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a class="active" href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end products -->
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-inner">
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/1.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/2.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/3.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/4.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

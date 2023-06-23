@@ -1,0 +1,118 @@
+﻿@model List<Model.Models.TourisAttractionViewModels>
+@{
+    var placeType = (Model.EF.PlaceType)ViewBag.PlaceType;
+    ViewBag.Title = placeType.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>We sale fresh fruits</p>
+                    <h1>Touris</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">@placeType.Name</span> </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row product-lists">
+            @foreach (var item in Model)
+            {
+                var url = "/detail/" + item.MetaTitle + "-" + item.ID;
+                <div class="col-lg-4 col-md-6 text-center strawberry">
+                    <div class="single-product-item">
+                        <div class="product-image">
+                            <a href="@url"><img src="@(item.Images??"/Data/null/null.png")" alt="@item.Name"></a>
+                        </div>
+                        <h3>@item.Name</h3>
+                    </div>
+                </div>
+            }
+            <div class="clear"></div>
+
+
+        </div>
+        @if (ViewBag.TotalPage >= 1)
+        {
+            var pageDisplay = (int)ViewBag.Maxpage;
+            int totalPage = (int)ViewBag.TotalPage;
+            int currentPage = (int)ViewBag.Page;
+
+            var startIndex = Math.Max(1, currentPage - pageDisplay / 2);
+            var endIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+            var link = "/touris/" + placeType.MetaTitle + "-" + placeType.ID;
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="pagination-wrap">
+                        <ul>
+                            @if (currentPage > ViewBag.First)
+                            {
+                                <li><a href="@link?page=@ViewBag.Pre">Prev</a></li>
+                                <li><a href="@link?page=@ViewBag.First">Next</a></li>
+                            }
+                            @for (int i = startIndex; i <= endIndex; i++)
+                            {
+                                if (currentPage == i)
+                                {
+                                    <li><a href="@link?page=@i" class="active" title="page @i">@i</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@link?page=@i" class="pos" title="page @i">@i</a></li>
+                                }
+                            }
+                            @if (currentPage < totalPage)
+                            {
+                                <li><a href="@link?page=@ViewBag.Next">Prev</a></li>
+                                <li><a href="@link?page=@ViewBag.Last">Next</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <span> No Data in this Place Type</span>
+        }
+    </div>
+</div>
+<!-- end products -->
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-inner">
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/1.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/2.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/3.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/4.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="assets/img/company-logos/5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

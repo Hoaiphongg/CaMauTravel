@@ -1,0 +1,66 @@
+﻿@model Model.EF.TourisAttrDetail
+@{
+    ViewBag.Title = "CreateAndEditMultiTouris";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section JsFooter{
+    <script>
+        $(function () {
+            $("#multiSelectDropdown").chosen({
+                width: "100%"
+            });
+        });
+    </script>
+}
+
+
+<main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-100" style="background-image: url('https://meta.vn/Data/image/2021/09/30/background-la-gi-anh-background-dep-28.jpg');">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-12 mx-auto">
+                    <div class="card z-index-0 fadeIn3 fadeInBottom">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Create New Attraction Detail</h4>
+                            </div>
+                            <div class="card-body">
+                                @using (Html.BeginForm())
+                                {
+                                    <div class="form-horizontal">
+                                        @Html.HiddenFor(model => model.ID)
+                                        <label>Select Tour Attractions</label>
+
+                                        @Html.ListBoxFor(model => model.SelectedIDArray, new MultiSelectList(Model.DetailCollection, "Name", "Name"), new { id = "multiSelectDropdown", multiple = "true" })
+                                        <input type="submit" name="name" value="Submit" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+<!--   Core JS Files   -->
+
+<script src="~/Assets/Admin/js/chosen.jquery.min.js"></script>
+<script src="~/Assets/Admin/js/core/popper.min.js"></script>
+<script src="~/Assets/Admin/js/core/bootstrap.min.js"></script>
+<script src="~/Assets/Admin/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="~/Assets/Admin/js/plugins/smooth-scrollbar.min.js"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="~/Assets/Admin/js/material-dashboard.min.js?v=3.0.2"></script>

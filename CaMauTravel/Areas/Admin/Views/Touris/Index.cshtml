@@ -1,0 +1,111 @@
+﻿@model PagedList.IPagedList<Model.EF.Touri>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section JsFooter{
+    <script src="~/Assets/Admin/js/controller/tourisController.js"></script>
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Touris Table</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card-header text-center">
+                            <button type="button" class="btn bg-gradient-primary btn-sm mt-0 mb-0">@Html.ActionLink("Create New", "Create", new { @class = "text-decoration: none" })</button>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        @using (Html.BeginForm("Index", "Touris", FormMethod.Get))
+                        {
+                            <div class="card-header text-center">
+                                <div class="input-group input-group-outline">
+                                    <input type="text" class="form-control" value="@ViewBag.SearchString" name="searchString" placeholder="Search..">
+                                    <button type="submit" class="btn bg-gradient-secondary btn-sm mt-0 mb-0">Find</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2 ">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quanlity</th>
+                                    <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="@(item.Image??"/Data/null/null.png")" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">@Html.DisplayFor(modelItem => item.Name)</h6>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@Html.DisplayFor(modelItem => item.Description)</p>
+
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <a href="#" class="btn-active" data-id="">@(item.Status ? "Enable" : "Disable")</a>
+                                        </td>
+
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold">@Html.DisplayFor(modelItem => item.Price)</span>
+                                        </td>
+
+
+                                        <td class="align-middle">
+                                            <a href="@Url.Action("Details", "Touris", new { id = item.ID })" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                Details
+                                            </a>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="@Url.Action("Edit", "Touris", new { id = item.ID })" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="@Url.Action("Delete", "Touris", new { id = item.ID })" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item"><a>@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString, @class = "page-link" }))</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

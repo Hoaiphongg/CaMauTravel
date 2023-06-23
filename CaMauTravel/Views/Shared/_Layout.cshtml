@@ -1,0 +1,329 @@
+﻿
+@using CaMauTravel.Common;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+    <!-- title -->
+    <title>Fruitkha</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="~/Assets/User/css/all.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/Assets/User/bootstrap/css/bootstrap.min.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="~/Assets/User/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="~/Assets/User/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="~/Assets/User/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="~/Assets/User/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="~/Assets/User/css/main.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="~/Assets/User/css/responsive.css">
+
+</head>
+<body>
+
+    <!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+    <!-- header -->
+    <div class="top-header-area" id="sticker">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+                        <!-- logo -->
+                        <div class="site-logo">
+                            <a href="/" ref="nofollow">
+                                <img src="~/Data/null/logo.png" alt="">
+                            </a>
+                        </div>
+                        <!-- logo -->
+                        <!-- menu start -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li><a href="@Url.Action("Index","MainHome")">Home</a></li>
+                                <li><a href="@Url.Action("Index","About")">About</a></li>
+                                <li>
+                                    <a href="#">Place Type Of Touris</a>
+                                    @{Html.RenderAction("PlaceType", "TourisUser");}
+                                </li>
+
+
+                                <li><a href="@Url.Action("Index","Contact")">Contact Us</a></li>
+                                <li><a href="@Url.Action("Index","TourisAttractions")">Touris Attractions</a></li>
+                                <li>
+                                    <a href="#">Place Type Of Touris Attraction</a>
+                                    @{Html.RenderAction("PlaceType", "Attendence");}
+                                </li>
+                                <li>
+                                    <a href="shop.html">Shop</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="@Url.Action("Index","Shopt")">Shop</a></li>
+                                        <li><a href="@Url.Action("Index","Cart")">Cart</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @{
+                                        var session = (ClientLogin)Session[CaMauTravel.Common.CommonConstants.USER_SESSION];
+                                    }
+                                    @if (session == null)
+                                    {
+                                        <a href="shop.html">User</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="@Url.Action("Login","Client")">Sign In</a></li>
+                                            <li><a href="@Url.Action("Register","Client")">Register</a></li>
+
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <a href="shop.html">@session.UserName</a>
+                                        <ul class="sub-menu">
+
+                                            <li><a href="@Url.Action("Logout","Client")">Logout</a></li>
+                                        </ul>
+                                    }
+
+                                </li>
+                                <li>
+                                    <div class="header-icons">
+                                        <a class="shopping-cart" href="@Url.Action("Index","Cart")"><i class="fas fa-shopping-cart"></i></a>
+                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                        <div class="mobile-menu"></div>
+                        <!-- menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header -->
+    <!-- search area -->
+    <div class="search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                    <div class="search-bar">
+                        <div class="search-bar-tablecell">
+                            <h3>Search For:</h3>
+                            <input type="text" placeholder="Keywords">
+                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end search area -->
+    <!-- hero area -->
+    <!-- end hero area -->
+    <!-- features list section -->
+    @RenderBody()
+
+    <section class="cart-banner pt-100 pb-100">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3><span class="orange-text">Top Hot</span> Of Mounth</h3>
+            </div>
+            @{Html.RenderAction("TopHot", "Shopt");}
+        </div>
+    </section>
+
+
+    <!-- advertisement section -->
+    <!-- end advertisement section -->
+    <!-- latest news -->
+    <div class="latest-news pt-150 pb-150">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h3><span class="orange-text">Our</span> News</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-news">
+                        <a href="single-news.html"><div class="latest-news-bg news-bg-1"></div></a>
+                        <div class="news-text-box">
+                            <h3><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-latest-news">
+                        <a href="single-news.html"><div class="latest-news-bg news-bg-2"></div></a>
+                        <div class="news-text-box">
+                            <h3><a href="single-news.html">A man's worth has its season, like tomato.</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+                    <div class="single-latest-news">
+                        <a href="single-news.html"><div class="latest-news-bg news-bg-3"></div></a>
+                        <div class="news-text-box">
+                            <h3><a href="single-news.html">Good thoughts bear good fresh juicy fruit.</a></h3>
+                            <p class="blog-meta">
+                                <span class="author"><i class="fas fa-user"></i> Admin</span>
+                                <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                            <a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <a href="news.html" class="boxed-btn">More News</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end latest news -->
+    <!-- end latest news -->
+    <!-- logo carousel -->
+    <div class="logo-carousel-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo-carousel-inner">
+                        <div class="single-logo-item">
+                            <img src="~/Assets/User/img/company-logos/1.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/Assets/User/img/company-logos/2.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/Assets/User/img/company-logos/3.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/Assets/User/img/company-logos/4.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/Assets/User/img/company-logos/5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end logo carousel -->
+    <!-- footer -->
+    <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box about-widget">
+                        <h2 class="widget-title">About us</h2>
+                        <p>CaMauTravel Là một trang trang web mang sứ mệnh đưa những người con ở xứ lạ đến với mảnh đất cà mau, tìm hiểu về con người cà mau. </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box get-in-touch">
+                        <h2 class="widget-title">Address</h2>
+                        <ul>
+                            <li>168 Đ. Nguyễn Văn Cừ, An Bình, Ninh Kiều, Cần Thơ</li>
+                            <li>namcanthouniversity@gmail.com</li>
+                            <li>0292 3798 222</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box subscribe">
+                        <h2 class="widget-title">Subscribe</h2>
+                        <p>Subscribe to our mailing list to get the latest updates.</p>
+                        <form action="index.html">
+                            <input type="email" placeholder="Email">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer -->
+    <!-- copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-right col-md-12">
+                    <div class="social-icons">
+                        <ul>
+                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end copyright -->
+    <!-- jquery -->
+    <script src="~/Assets/User/js/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="~/Assets/User/bootstrap/js/bootstrap.min.js"></script>
+    <!-- count down -->
+    <script src="~/Assets/User/js/jquery.countdown.js"></script>
+    <!-- isotope -->
+    <script src="~/Assets/User/js/jquery.isotope-3.0.6.min.js"></script>
+    <!-- waypoints -->
+    <script src="~/Assets/User/js/waypoints.js"></script>
+    <!-- owl carousel -->
+    <script src="~/Assets/User/js/owl.carousel.min.js"></script>
+    <!-- magnific popup -->
+    <script src="~/Assets/User/js/jquery.magnific-popup.min.js"></script>
+    <!-- mean menu -->
+    <script src="~/Assets/User/js/jquery.meanmenu.min.js"></script>
+    <!-- sticker js -->
+    <script src="~/Assets/User/js/sticker.js"></script>
+    <!-- main js -->
+    <script src="~/Assets/User/js/main.js"></script>
+
+    @RenderSection("JsFooter", required: false);
+
+</body>
+</html>

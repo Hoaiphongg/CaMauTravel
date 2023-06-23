@@ -1,0 +1,88 @@
+﻿@model List<CaMauTravel.Models.CartItem>
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section JsFooter{
+    <script src="~/Assets/Admin/js/controller/tourisController.js"></script>
+}
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>We sale fresh fruits</p>
+                    <h1>Payment</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cart-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-remove"></th>
+                                <th class="product-image">Product Image</th>
+                                <th class="product-name">Name</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="table-body-row">
+                                    <td class="product-remove"><a href="#"><i data-id="@item.Touri.ID" class="far fa-window-close removeItemInCart"></i></a></td>
+                                    <td class="product-image"><img src="@item.Touri.Image" alt=""></td>
+                                    <td class="product-name">@item.Touri.Name</td>
+                                    <td class="product-price">@item.Touri.Price.GetValueOrDefault(0).ToString("N0")</td>
+                                    <td class="product-quantity"><input type="number" class="txtQuanlity" data-id="@item.Touri.ID" value="@item.Quanlity"></td>
+                                    <td class="product-total">>@((@item.Touri.Price.GetValueOrDefault(0) * @item.Quanlity).ToString("N0"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="checkout-accordion-wrap">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card single-accordion">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Billing Address
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="billing-address-form">
+                                        @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+                                        {
+                                            <p><input type="text" name="shipname" placeholder="Name"></p>
+                                            <p><input type="tel" name="mobile" placeholder="Phone"></p>
+                                            <p><input type="text" name="address" placeholder="Address"></p>
+                                            <p><input type="email" name="email" placeholder="Email"></p>
+                                            <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
+                                            <button type="submit" class="btn">Submit</button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

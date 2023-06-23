@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5e589c59-e8b3-44af-92b0-e540008ed5c1": {
+      "ProjectGuid": "5e589c59-e8b3-44af-92b0-e540008ed5c1",
+      "DisplayName": "CaMauTravel",
+      "ColorIndex": 0
+    },
+    "207a9452-d9f8-40a4-a5a7-48b49dda55dc": {
+      "ProjectGuid": "207a9452-d9f8-40a4-a5a7-48b49dda55dc",
+      "DisplayName": "Model",
+      "ColorIndex": 1
+    },
+    "9bf1fb1c-60fb-4cf7-8fc0-fb2e1b69f3f4": {
+      "ProjectGuid": "9bf1fb1c-60fb-4cf7-8fc0-fb2e1b69f3f4",
+      "DisplayName": "Model",
+      "ColorIndex": 2
+    },
+    "2eb09e32-44e5-4b7b-8cd9-6dc826c4324b": {
+      "ProjectGuid": "2eb09e32-44e5-4b7b-8cd9-6dc826c4324b",
+      "DisplayName": "ClassLibrary1",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}

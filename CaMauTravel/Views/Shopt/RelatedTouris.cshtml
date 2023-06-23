@@ -1,0 +1,20 @@
+﻿@model List<Model.EF.Touri>
+@{
+    Layout = null;
+    var Related = (List<Model.EF.Touri>)ViewBag.RelatedTouris;
+}
+
+@foreach (var item in Related)
+{
+    var url = "/detail/" + item.MetaTitle + "-" + item.ID;
+    <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
+        <div class="single-product-item">
+            <div class="product-image">
+                <a href="url"><img src="@(item.Image??"/Data/null/null.png")" alt="@item.Name"></a>
+            </div>
+            <h3>@item.Name</h3>
+            <p class="product-price"><span>Per Tick</span> @(item.Price.HasValue?item.Price.Value.ToString("N0"): "Call") VND </p>
+            <a href="/add-to-cart?tourisId=@item.ID&quanlity=1" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+        </div>
+    </div>
+}
